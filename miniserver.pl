@@ -83,6 +83,16 @@ $data{"_method"} = "POST";
 $data{"_method"} = "ERROR";
 }
 
+####
+print $client "HTTP/1.0 200 OK", Socket::CRLF;
+print $client "Content-type: text/html", Socket::CRLF;
+print $client Socket::CRLF;
+use Data::Dumper;
+print $client Dumper \%data;
+close $client;
+####
+
+if(0){
 #------- Serve file ----------------------
 
 my $localfile = $DOCUMENT_ROOT.$request{URL};
@@ -105,6 +115,7 @@ print $client "<html><body>404 Not Found</body></html>";
 $data{"_status"} = "404";
 }
 close(FILE);
+}
 
 # Log Request
 print ($DOCUMENT_ROOT.$request{URL},"\n");
